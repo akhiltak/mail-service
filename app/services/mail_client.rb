@@ -44,7 +44,6 @@ class MailClient
 
 		# get bounced email ids
 		result << @mg_client.get("#{ENV['DOMAIN']}/bounces").to_h["items"] || []
-		debugger
 		# get unsubscribed email ids
 		result << @mg_client.get("#{ENV['DOMAIN']}/unsubscribes").to_h["items"] || []
 		# get complaint email ids
