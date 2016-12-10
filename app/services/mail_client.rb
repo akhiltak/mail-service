@@ -8,6 +8,7 @@ class MailClient
 	end
 
 	# Sends a mail to a given email id
+	# Can simply add tags using params 'o:tag' to classify messages 
 	def send_mail(send_to, subject, text)
 
 		# setting message contents
@@ -15,7 +16,7 @@ class MailClient
 			from: ENV['SENDER'],
 			to:   send_to,
 			subject: subject,
-			text:    text
+			text:    text,
 		}
 
 		# Sending message through the client
@@ -43,6 +44,7 @@ class MailClient
 
 		# get bounced email ids
 		result << @mg_client.get("#{ENV['DOMAIN']}/bounces").to_h["items"] || []
+		debugger
 		# get unsubscribed email ids
 		result << @mg_client.get("#{ENV['DOMAIN']}/unsubscribes").to_h["items"] || []
 		# get complaint email ids
