@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        SendWelcomeMail.perform_async(@user.email, @user.name)
+        SendFollowUp.perform_in(2.minutes, @user.email, @user.name)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

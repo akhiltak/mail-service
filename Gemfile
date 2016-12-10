@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Mailgun gem for sending mails
 gem 'mailgun-ruby', '~>1.1.2'
 
+# Sidekiq gem for background processes
+gem 'sidekiq'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
